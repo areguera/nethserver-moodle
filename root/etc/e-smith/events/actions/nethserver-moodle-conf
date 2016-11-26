@@ -1,0 +1,14 @@
+#!/bin/bash
+######################################################################
+#
+#   NethServer configuration for Moodle database
+#
+######################################################################
+
+password=`perl -e "use NethServer::Password; print NethServer::Password::store('moodle');"`
+
+# initialize grants mysql moodle database
+/usr/bin/mysql --defaults-file=/root/.my.cnf -e "CREATE DATABASE IF NOT EXISTS moodle;"
+/usr/bin/mysql --defaults-file=/root/.my.cnf -e "grant all on moodle.* to 'moodle'@'localhost' identified by '$password';"
+/usr/bin/mysql --defaults-file=/root/.my.cnf -e "FLUSH PRIVILEGES"
+
