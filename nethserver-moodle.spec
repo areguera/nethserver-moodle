@@ -1,6 +1,6 @@
 Name: nethserver-moodle
 Summary: Moodle integration in NethServer
-Version: 0.0.1
+Version: 0.0.2
 Release: 1%{?dist}
 License: GPL
 Source: %{name}-%{version}.tar.gz
@@ -39,5 +39,9 @@ mkdir -p %{buildroot}/var/lib/nethserver/moodle
 
 
 %changelog
+* Fri Nov 26 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.2-1
+- issue #1: Wrong access control in moodle.conf
+- issue #2: Wrong class name definition in moodle's module
+
 * Fri Nov 25 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.1-1
 - Initial build.
