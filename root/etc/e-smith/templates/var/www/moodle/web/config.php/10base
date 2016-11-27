@@ -1,4 +1,4 @@
-<?php  /// Moodle Configuration File 
+/// Moodle Configuration File
 
 unset($CFG);
 
