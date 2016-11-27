@@ -25,7 +25,7 @@ namespace NethServer\Module\Dashboard\Applications;
  *
  * @author Alain Reguera Delgado
  */
-class Nextcloud extends \Nethgui\Module\AbstractModule implements \NethServer\Module\Dashboard\Interfaces\ApplicationInterface
+class Moodle extends \Nethgui\Module\AbstractModule implements \NethServer\Module\Dashboard\Interfaces\ApplicationInterface
 {
 
     public function getName()
