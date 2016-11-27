@@ -1,6 +1,6 @@
 Name: nethserver-moodle
 Summary: Moodle integration in NethServer
-Version: 0.0.3
+Version: 0.0.4
 Release: 1%{?dist}
 License: GPL
 Source: %{name}-%{version}.tar.gz
@@ -40,15 +40,18 @@ mkdir -p %{buildroot}/var/lib/nethserver/moodle
 
 
 %changelog
+* Sat Nov 27 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.4-1
+- Update README.rst
+
 * Fri Nov 26 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.3-1
 - Fix template header in config.php
 - Remove duplicated php opening tag from final config.php file
-- Clean up config.php file from ^M characters
-- Change wwwroot value to use https instead of http in config.php
+- Remove ^M characters from config.php file
+- Update config.php to use https instead of http as value to wwwroot
 
 * Fri Nov 26 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.2-1
-- issue #1: Wrong access control in moodle.conf
-- issue #2: Wrong class name definition in moodle's module
+- Fix access control in moodle.conf
+- Fix moodle's module class name definition
 
 * Fri Nov 25 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.1-1
 - Initial build.
