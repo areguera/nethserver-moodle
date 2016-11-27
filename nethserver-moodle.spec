@@ -42,6 +42,8 @@ mkdir -p %{buildroot}/var/lib/nethserver/moodle
 %changelog
 * Fri Nov 26 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.3-1
 - Fix template header in config.php
+- Remove duplicated php opening tag from final config.php file
+- Clean up config.php file from ^M characters
 
 * Fri Nov 26 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.2-1
 - issue #1: Wrong access control in moodle.conf
