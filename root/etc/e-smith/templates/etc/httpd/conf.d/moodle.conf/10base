@@ -7,7 +7,7 @@ Alias /moodle /var/www/moodle/web
 <Directory /var/www/moodle/web>
   <IfModule mod_authz_core.c>
     # Apache 2.4
-    Require local
+    Require all granted
   </IfModule>
   <IfModule !mod_authz_core.c>
     # Apache 2.2
