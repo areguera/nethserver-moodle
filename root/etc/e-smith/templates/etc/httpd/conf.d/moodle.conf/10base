@@ -1,3 +1,9 @@
+{
+ my $allow24 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all granted':"ip $localAccess";
+ my $allow22 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all ':"$localAccess";
+
+$OUT .= <<"HERE";
+
 #
 # 10base
 #
@@ -7,12 +13,12 @@ Alias /moodle /var/www/moodle/web
 <Directory /var/www/moodle/web>
   <IfModule mod_authz_core.c>
     # Apache 2.4
-    Require all granted
+    Require $allow24
   </IfModule>
   <IfModule !mod_authz_core.c>
     # Apache 2.2
     Order Allow,Deny
-    Allow from all
+    Allow from $allow22 
   </IfModule>
 </Directory>
 
@@ -31,3 +37,5 @@ Alias /moodle /var/www/moodle/web
   </IfModule>
 </Directory>
 
+HERE
+}
