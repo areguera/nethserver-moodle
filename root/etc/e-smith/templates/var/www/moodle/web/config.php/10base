@@ -10,7 +10,7 @@ $CFG->dbpass    = 'bW9qwYYQnnFusiUR';
 $CFG->dbpersist =  false;
 $CFG->prefix    = 'mdl_';
 
-$CFG->wwwroot   = 'http://{$SystemName}.{$DomainName}/moodle';
+$CFG->wwwroot   = 'https://{$SystemName}.{$DomainName}/moodle';
 $CFG->dirroot   = '/var/www/moodle/web';
 $CFG->dataroot  = '/var/www/moodle/data';
 $CFG->admin     = 'admin';
