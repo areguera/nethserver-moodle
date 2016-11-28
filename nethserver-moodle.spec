@@ -36,7 +36,6 @@ mkdir -p %{buildroot}/var/lib/nethserver/moodle
 %defattr(-,root,root)
 %doc COPYING README.rst
 %dir %{_nseventsdir}/%{name}-update
-%config %attr (0440,root,root) %{_sysconfdir}/sudoers.d/90_nethserver_moodle
 
 
 %changelog
