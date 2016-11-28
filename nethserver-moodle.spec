@@ -39,6 +39,8 @@ rm -rf %{buildroot}
 
 %changelog
 * Sun Nov 27 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.5-1
+- Remove /var/lib/nethserver/moodle directory
+- Remove sudoers.d reference from package spec
 - Remove 90_nethserver_moodle from sudoers.d
 - Remove config.php from backup-data.d/moodle.include
 - Automate password setting in config.php template
