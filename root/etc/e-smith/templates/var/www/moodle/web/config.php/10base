@@ -1,3 +1,6 @@
+{ use NethServer::Password;
+  my $password = NethServer::Password::store('moodle');
+}
 /// Moodle Configuration File
 
 unset($CFG);
@@ -6,7 +9,7 @@ $CFG->dbtype    = 'mysql'; // Valid values include: mysql postgres7
 $CFG->dbhost    = 'localhost';
 $CFG->dbname    = 'moodle';
 $CFG->dbuser    = 'moodle';
-$CFG->dbpass    = 'bW9qwYYQnnFusiUR';
+$CFG->dbpass    = '{$password}';
 $CFG->dbpersist =  false;
 $CFG->prefix    = 'mdl_';
 
