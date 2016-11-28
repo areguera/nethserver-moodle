@@ -54,7 +54,6 @@ Backup
 
 The Moodle backup includes the configuration file and all data: 
 
-* /var/www/moodle/web/config.php
 * /var/www/moodle/data/
 
 The database is automatically saved by ``nethserver-mysql``.
