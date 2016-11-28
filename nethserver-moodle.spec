@@ -1,6 +1,6 @@
 Name: nethserver-moodle
 Summary: Moodle integration in NethServer
-Version: 0.0.4
+Version: 0.0.5
 Release: 1%{?dist}
 License: GPL
 Source: %{name}-%{version}.tar.gz
@@ -40,6 +40,9 @@ mkdir -p %{buildroot}/var/lib/nethserver/moodle
 
 
 %changelog
+* Sun Nov 27 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.5-1
+- Automate password setting in config.php template
+
 * Sun Nov 27 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.4-1
 - Update README.rst
 - Consider README.rst a documentation file
