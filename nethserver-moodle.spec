@@ -1,6 +1,6 @@
 Name: nethserver-moodle
 Summary: Moodle integration in NethServer
-Version: 0.0.5
+Version: 0.0.6
 Release: 1%{?dist}
 License: GPL
 Source: %{name}-%{version}.tar.gz
@@ -10,6 +10,9 @@ URL: %{url_prefix}/%{name}
 BuildRequires: nethserver-devtools
 
 Requires: moodle >= 3.1.2
+# Moodle dependencies (not included in moodle spec).
+Requires: php-soap, php-pecl-zendopcache, php-ldap
+# NethServer dependencies.
 Requires: nethserver-httpd, nethserver-mysql
 
 %description
@@ -38,6 +41,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Nov 28 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.6-1
+- Add a property to restrict to the LAN if wanted
+- Add moodle dependencies not included in moodle spec itself
+
 * Sun Nov 27 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.5-1
 - Remove /var/lib/nethserver/moodle directory
 - Remove sudoers.d reference from package spec
