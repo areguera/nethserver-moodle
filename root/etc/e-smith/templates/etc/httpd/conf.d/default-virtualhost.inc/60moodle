@@ -1,0 +1,6 @@
+#
+# 60moodle
+#
+RewriteEngine On
+RewriteCond %\{HTTPS\} !=on
+RewriteRule ^/moodle(/.*)?$ https://%\{HTTP_HOST\}/moodle$1 [L,R=301]
