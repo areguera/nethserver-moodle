@@ -30,7 +30,6 @@ event_actions("nethserver-moodle-update", qw(
 ));
 
 event_templates("nethserver-moodle-update", qw(
-  /etc/httpd/conf.d/default-virtualhost.inc
   /etc/httpd/conf.d/moodle.conf
   /var/www/moodle/web/config.php
 ));
