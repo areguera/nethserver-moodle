@@ -1,13 +1,14 @@
 {
  my $allow24 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all granted':"ip $localAccess";
  my $allow22 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all ':"$localAccess";
+ my $path = ${'moodle'}{'path'} || 'moodle';
 
 $OUT .= <<"HERE";
 
 #
 # 10base
 #
-Alias /moodle /var/www/moodle/web
+Alias /$path /var/www/moodle/web
 
 # Moodle public web pages - must be publically accessible
 <Directory /var/www/moodle/web>

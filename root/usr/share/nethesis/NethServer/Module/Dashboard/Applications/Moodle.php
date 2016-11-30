@@ -35,10 +35,12 @@ class Moodle extends \Nethgui\Module\AbstractModule implements \NethServer\Modul
 
     public function getInfo()
     {
+
+         $path = $this->getPlatform()->getDatabase('configuration')->getProp('moodle','path');
          $host = explode(':',$_SERVER['HTTP_HOST']);
 
          return array(
-            'url' => "https://".$host[0]."/moodle"
+            'url' => "https://".$host[0]."/$path"
          );
     }
 }
