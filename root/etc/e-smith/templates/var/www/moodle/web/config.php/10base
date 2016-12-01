@@ -14,7 +14,7 @@ unset(\$CFG);
 \$CFG->dbpersist =  false;
 \$CFG->prefix    = 'mdl_';
 
-\$CFG->wwwroot   = 'https://$SystemName.$DomainName/moodle';
+\$CFG->wwwroot   = 'https://'.\$_SERVER[\"HTTP_HOST\"].'/moodle';
 \$CFG->dirroot   = '/var/www/moodle/web';
 \$CFG->dataroot  = '/var/www/moodle/data';
 \$CFG->admin     = 'admin';
