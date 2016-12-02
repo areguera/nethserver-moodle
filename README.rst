@@ -22,12 +22,10 @@ Once installed, `moodle` needs to be configured in order to used.  The
 configuration process takes place the first time you access Moodle's
 web interface and consists on the following straightforward actions:
 
-* System verification. It should be pass all without any problem
-  except two warnings checks about `php-soap` and `opcache` which can
-  be ignored by pressing the continue button.
+* System verification. It should pass without any warning.
 
-* Database population. It should be pass all without any problem.
-  When done, press the continue button.
+* Database population. It should pass all without any problem.  When
+  done, press the continue button.
 
 * Administrator account creation. Here you need to enter the
   administrator profile (including password and e-mail). When done,
