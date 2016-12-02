@@ -3,4 +3,4 @@
 #
 RewriteEngine On
 RewriteCond %\{HTTPS\} !=on
-RewriteRule ^/{$moodle{'path'}||'moodle'}(/.*)?$ https://%\{HTTP_HOST\}/{$moodle{'path'}||'moodle'}$1 [L,R=301] 
+RewriteRule ^/{$moodle{'path'}||'moodle'}(/.*)?$ https://%\{HTTP_HOST\}/{$moodle{'path'}||'moodle'}$1 [L,R=301]
