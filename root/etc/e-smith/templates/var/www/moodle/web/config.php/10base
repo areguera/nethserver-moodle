@@ -1,6 +1,9 @@
-{ use NethServer::Password;
+{
+  use NethServer::Password;
   my $password = NethServer::Password::store('moodle');
-
+  my $url = $moodle{'url'} || $SystemName .'.'. $DomainName;
+  my $path = $moodle{'path'} || 'moodle';
+ 
   $OUT .= <<"HERE";
 /// Moodle Configuration File
 
@@ -14,7 +17,7 @@ unset(\$CFG);
 \$CFG->dbpersist =  false;
 \$CFG->prefix    = 'mdl_';
 
-\$CFG->wwwroot   = 'https://$SystemName.$DomainName/moodle';
+\$CFG->wwwroot   = 'https://$url/$path';
 \$CFG->dirroot   = '/var/www/moodle/web';
 \$CFG->dataroot  = '/var/www/moodle/data';
 \$CFG->admin     = 'admin';
