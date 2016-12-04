@@ -2,7 +2,7 @@
   use NethServer::Password;
   my $password = NethServer::Password::store('moodle');
   my $url = $moodle{'url'} || '$_SERVER["HTTP_HOST"]';
-  my $path = $moodle{'path'} || 'moodle';
+  my $path = '/'.$moodle{'path'} if (($moodle{'path'} !~ m/./) && ($moodle{'path'} !~ m/^//)) || 'moodle';
 
   $OUT .= <<"HERE";
 /// Moodle Configuration File
