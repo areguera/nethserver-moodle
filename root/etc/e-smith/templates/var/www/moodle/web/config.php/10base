@@ -1,10 +1,12 @@
 {
-  use NethServer::Password;
-  my $password = NethServer::Password::store('moodle');
-  my $url = $moodle{'url'} || '$_SERVER["HTTP_HOST"]';
-  my $path = (($moodle{'path'} !~ m/\./) && ($moodle{'path'} !~ m/^\//)) ? $moodle{'path'} : 'moodle';
+use NethServer::Password;
 
-  $OUT .= <<"HERE";
+my $password = NethServer::Password::store('moodle');
+my $host = $moodle{'host'} || "'. \$_SERVER[\"HTTP_HOST\"] . '";
+my $path = (($moodle{'path'} !~ m/^(\.|\/)/) && ($moodle{'path'} ne "")) ? $moodle{'path'} : 'moodle';
+my $url  = ( $moodle{'path'} eq "" ) ? 'https://' . $host : 'https://' . $host . '/' . $path;
+
+$OUT .= <<"HERE";
 /// Moodle Configuration File
 
 unset(\$CFG);
@@ -17,7 +19,7 @@ unset(\$CFG);
 \$CFG->dbpersist =  false;
 \$CFG->prefix    = 'mdl_';
 
-\$CFG->wwwroot   = 'https://' . $url . '/$path';
+\$CFG->wwwroot   = '$url';
 \$CFG->dirroot   = '/var/www/moodle/web';
 \$CFG->dataroot  = '/var/www/moodle/data';
 \$CFG->admin     = 'admin';

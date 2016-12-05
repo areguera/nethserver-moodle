@@ -36,11 +36,26 @@ class Moodle extends \Nethgui\Module\AbstractModule implements \NethServer\Modul
     public function getInfo()
     {
 
-         $path = $this->getPlatform()->getDatabase('configuration')->getProp('moodle','path');
-         $host = explode(':',$_SERVER['HTTP_HOST']);
+        // Set host value based on database configuraiton
+        if ($this->getPlatform()->getDatabase('configuration')->getProp('moodle','host') != "") {
+            $host = $this->getPlatform()->getDatabase('configuration')->getProp('moodle','host');
+        } else {
+            $host = explode(':', $_SERVER['HTTP_HOST']);
+            $host = $host[0] . '/';
+        }
 
-         return array(
-            'url' => "https://".$host[0]."/$path"
-         );
+
+        // Set path value based on database configuraiton
+        $path = $this->getPlatform()->getDatabase('configuration')->getProp('moodle','path');
+
+        // Set url value based on path
+        if ( $path == "" )
+            $url = "https://" . $host;
+        else
+            $url = "https://" . $host . $path;
+
+        return array(
+            'url' => $url
+        );
     }
 }

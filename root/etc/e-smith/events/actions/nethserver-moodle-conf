@@ -14,3 +14,4 @@ password=`perl -e "use NethServer::Password; print NethServer::Password::store('
 
 # expand moodle configuration files
 /usr/sbin/e-smith/expand-template /var/www/moodle/web/config.php
+/usr/sbin/e-smith/expand-template /etc/httpd/conf.d/moodle.conf
