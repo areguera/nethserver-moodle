@@ -57,10 +57,9 @@ Host*.
   which case the value introduced will be replaced by `moodle`. To
   implement this solution run the following commands:
 
-    ::
-    db configuration setprop moodle host ""
-    db configuration setprop moodle path moodle
-    signal-event nethserver-moodle-update
+    db configuration setprop moodle host "";
+    db configuration setprop moodle path moodle;
+    signal-event nethserver-moodle-update;
 
 * *Virtual Host* -- This solution takes place when the value of *host*
   property is non-empty and the value of  *path* property is empty. In
@@ -69,10 +68,9 @@ Host*.
   configuration and serve Moodle that way. To implement this solution
   run the following commands:
 
-    ::
-    db configuration setprop moodle host "vhost.your.domain"
-    db configuration setprop moodle path ""
-    signal-event nethserver-moodle-update
+    db configuration setprop moodle host "vhost.your.domain";
+    db configuration setprop moodle path "";
+    signal-event nethserver-moodle-update;
 
   *CAUTION:* In order for this solution to work, the
   `vhost.your.domain` must have a valid entry in the system's hosts
