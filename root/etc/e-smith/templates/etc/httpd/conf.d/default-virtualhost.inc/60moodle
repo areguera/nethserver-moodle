@@ -1,6 +1,12 @@
+{
+return "##\n##moodle is configured as a virtualhost\n##\n" unless ${moodle}{'apacheConf'} ne 'virtualhost';
+my $alias = $moodle{'path'}||'moodle';
+$OUT .= << "EOF";
 #
 # 60moodle
 #
 RewriteEngine On
 RewriteCond %\{HTTPS\} !=on
-RewriteRule ^/{$moodle{'path'}||'moodle'}(/.*)?$ https://%\{HTTP_HOST\}/{$moodle{'path'}||'moodle'}$1 [L,R=301]
+RewriteRule ^/$alias(/.*)?\$ https://%\{HTTP_HOST\}/$alias\$1 [L,R=301]
+EOF
+}
