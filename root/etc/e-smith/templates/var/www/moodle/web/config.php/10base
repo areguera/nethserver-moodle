@@ -4,7 +4,7 @@ use NethServer::Password;
 my $password = NethServer::Password::store('moodle');
 my $host = $moodle{'host'} || "'. \$_SERVER[\"HTTP_HOST\"] . '";
 my $path = (($moodle{'path'} !~ m/^(\.|\/)/) && ($moodle{'path'} ne "")) ? $moodle{'path'} : 'moodle';
-my $url  = ( $moodle{'path'} eq "" ) ? 'https://' . $host : 'https://' . $host . '/' . $path;
+my $url  = ( $moodle{'apacheConf'} eq "virtualhost" ) ? 'https://' . $host : 'https://' . $host . '/' . $path;
 
 $OUT .= <<"HERE";
 /// Moodle Configuration File
