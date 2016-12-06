@@ -5,6 +5,10 @@ my $host = ${'moodle'}{'host'} || $SystemName . '.' . $DomainName;
 my $path = ${'moodle'}{'path'};
 
 if ( $path eq "" ) {
+
+    my $cert = $pki{'CrtFile'} || '/etc/pki/tls/certs/NSRV.crt';
+    my $key  = $pki{'KeyFile'} || '/etc/pki/tls/private/NSRV.key';
+
     $OUT .= <<"HERE";
 #
 # 10base - Moodle Virtual Host ($host:443)
@@ -14,8 +18,8 @@ if ( $path eq "" ) {
     ServerName $host
 
     SSLEngine on
-    SSLCertificateFile "/etc/pki/tls/certs/NSRV.crt"
-    SSLCertificateKeyFile "/etc/pki/tls/private/NSRV.key"
+    SSLCertificateFile "$cert"
+    SSLCertificateKeyFile "$key"
 
     # Moodle public web pages - must be publically accessible
     <Directory /var/www/moodle/web>
