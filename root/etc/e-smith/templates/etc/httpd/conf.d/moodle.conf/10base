@@ -2,9 +2,11 @@
 my $allow24 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all granted':"ip $localAccess";
 my $allow22 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all ':"$localAccess";
 my $host = ${'moodle'}{'host'} || $SystemName . '.' . $DomainName;
-my $path = ${'moodle'}{'path'};
+my $path = ${'moodle'}{'path'} || 'moodle';
 
-if ( $path eq "" ) {
+my $apacheconf = ${'moodle'}{'apacheConf'} || 'alias';
+
+if ( $apacheconf eq "virtualhost" ) {
 
     my $cert = $pki{'CrtFile'} || '/etc/pki/tls/certs/NSRV.crt';
     my $key  = $pki{'KeyFile'} || '/etc/pki/tls/private/NSRV.key';
@@ -60,7 +62,7 @@ if ( $path eq "" ) {
 
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
-    RewriteRule (.*) https://%{SERVER_NAME}$1 [R,L]
+    RewriteRule (.*) https://%{SERVER_NAME}\$1 [R,L]
 
 </VirtualHost>
 HERE
