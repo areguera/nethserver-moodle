@@ -89,9 +89,10 @@ following meaning:
   case be aware it must not begin with dot (.) or slash (/) because
   the entire value will be ignored and replaced with the string
   `moodle`.
-* *apacheConf* -- this option sets the type of apache configuration you want
-  *virtualhost* : moodle is reachable by the url "https://yourdomain.com
-  *alias* (default path is moodle): moodle is reachable by the url "https://yourdomain.com/yourpath
+* *apacheConf* this option sets the type of apache configuration you want:
+
+  * ``virtualhost`` : moodle is reachable by the url "https://yourdomain.com
+  * ``alias`` (default path is moodle): moodle is reachable by the url "https://yourdomain.com/yourpath
 
 Authentication
 ==============
