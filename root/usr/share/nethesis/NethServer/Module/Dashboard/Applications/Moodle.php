@@ -47,12 +47,12 @@ class Moodle extends \Nethgui\Module\AbstractModule implements \NethServer\Modul
 
         // Set path value based on database configuraiton
         $path = $this->getPlatform()->getDatabase('configuration')->getProp('moodle','path');
-
+        $apacheConf = $this->getPlatform()->getDatabase('configuration')->getProp('moodle','apacheConf'); 
         // Set url value based on path
-        if ( $path == "" )
+        if ( $apacheConf == "virtualhost" )
             $url = "https://" . $host;
         else
-            $url = "https://" . $host . $path;
+            $url = "https://" . $host . "/$path";
 
         return array(
             'url' => $url
