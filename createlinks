@@ -19,29 +19,41 @@
 # along with NethServer.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-use esmith::Build::CreateLinks  qw(:all);
+use esmith::Build::CreateLinks qw(:all);
 
 #
-# Event nethserver-moodle-update 
+# Actions
 #
 event_actions("nethserver-moodle-update", qw(
-  initialize-default-databases 00
-  nethserver-moodle-conf 20
+    initialize-default-databases 00
+    nethserver-moodle-conf 20
 ));
-
-event_templates("nethserver-moodle-update", qw(
-  /etc/httpd/conf.d/default-virtualhost.inc
-  /etc/httpd/conf.d/moodle.conf
-  /var/www/moodle/web/config.php
-));
-
-event_services("nethserver-moodle-update", qw(
-  httpd restart
-));
-
 event_actions("nethserver-moodle-save", qw(
 ));
-
 event_actions("interface-update", qw(
 ));
 
+#
+# Templates
+#
+event_templates("nethserver-moodle-update", qw(
+    /etc/httpd/conf.d/default-virtualhost.inc
+    /etc/httpd/conf.d/moodle.conf
+    /var/www/moodle/web/config.php
+));
+event_templates("certificate-update", qw(
+    /etc/httpd/conf.d/moodle.conf
+));
+event_templates("certificate-upload", qw(
+    /etc/httpd/conf.d/moodle.conf
+));
+event_templates("nethserver-letsencrypt-update", qw(
+    /etc/httpd/conf.d/moodle.conf
+));
+
+#
+# Services
+#
+event_services("nethserver-moodle-update", qw(
+    httpd restart
+));

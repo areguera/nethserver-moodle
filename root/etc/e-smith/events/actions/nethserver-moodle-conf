@@ -11,6 +11,3 @@ password=`perl -e "use NethServer::Password; print NethServer::Password::store('
 /usr/bin/mysql --defaults-file=/root/.my.cnf -e "CREATE DATABASE IF NOT EXISTS moodle;"
 /usr/bin/mysql --defaults-file=/root/.my.cnf -e "grant all on moodle.* to 'moodle'@'localhost' identified by '$password';"
 /usr/bin/mysql --defaults-file=/root/.my.cnf -e "FLUSH PRIVILEGES"
-
-# expand moodle configuration files
-/usr/sbin/e-smith/expand-template /var/www/moodle/web/config.php

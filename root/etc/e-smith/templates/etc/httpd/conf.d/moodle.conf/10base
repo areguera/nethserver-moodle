@@ -1,12 +1,73 @@
 {
- my $allow24 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all granted':"ip $localAccess";
- my $allow22 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all ':"$localAccess";
- my $path = ${'moodle'}{'path'} || 'moodle';
+my $allow24 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all granted':"ip $localAccess";
+my $allow22 = ((${'moodle'}{'access'} || 'private') eq 'public') ? 'all ':"$localAccess";
+my $host = ${'moodle'}{'host'} || $SystemName . '.' . $DomainName;
+my $path = ${'moodle'}{'path'};
 
-$OUT .= <<"HERE";
+if ( $path eq "" ) {
+
+    my $cert = $pki{'CrtFile'} || '/etc/pki/tls/certs/NSRV.crt';
+    my $key  = $pki{'KeyFile'} || '/etc/pki/tls/private/NSRV.key';
+
+    $OUT .= <<"HERE";
+#
+# 10base - Moodle Virtual Host ($host:443)
+#
+<VirtualHost $host:443>
+    DocumentRoot "/var/www/moodle/web"
+    ServerName $host
+
+    SSLEngine on
+    SSLCertificateFile "$cert"
+    SSLCertificateKeyFile "$key"
+
+    # Moodle public web pages - must be publically accessible
+    <Directory /var/www/moodle/web>
+        <IfModule mod_authz_core.c>
+            # Apache 2.4
+            Require $allow24
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            # Apache 2.2
+            Order Allow,Deny
+            Allow from $allow22
+        </IfModule>
+    </Directory>
+
+    # Moodle private data - must NOT be publically accessible
+    <Directory /var/www/moodle/data>
+        <IfModule mod_authz_core.c>
+            # Apache 2.4
+            Require local
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            # Apache 2.2
+            Order Deny,Allow
+            Deny from all
+            Allow from 127.0.0.1
+            Allow from ::1
+        </IfModule>
+    </Directory>
+
+</VirtualHost>
 
 #
-# 10base
+# 10base - Moodle Virtual Host ($host:80)
+#
+<VirtualHost $host:80>
+    DocumentRoot "/var/www/moodle/web"
+    ServerName $host
+
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule (.*) https://%{SERVER_NAME}$1 [R,L]
+
+</VirtualHost>
+HERE
+} else {
+    $OUT .= <<"HERE";
+#
+# 10base - Moodle Alias
 #
 Alias /$path /var/www/moodle/web
 
@@ -19,7 +80,7 @@ Alias /$path /var/www/moodle/web
   <IfModule !mod_authz_core.c>
     # Apache 2.2
     Order Allow,Deny
-    Allow from $allow22 
+    Allow from $allow22
   </IfModule>
 </Directory>
 
@@ -37,6 +98,6 @@ Alias /$path /var/www/moodle/web
     Allow from ::1
   </IfModule>
 </Directory>
-
 HERE
+}
 }
