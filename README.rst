@@ -78,18 +78,18 @@ Host*.
 Presently, the properties available in the `moodle` key have the
 following meaning:
 
-* *host* -- This option sets the host name par of the URL used to
+* ``host`` -- This option sets the host name par of the URL used to
   access Moodle. By default it uses the same host name of the HTTP
   request. You can change the value of this property to fit your
   needs. In that case be aware of the CAUTION admonition above.
 
-* *path* -- This option sets the path part of the URL used to access
+* ``path`` -- This option sets the path part of the URL used to access
   Moodle. By default the value of this property is set to `moodle`.
   You can change the value of this property to fit your needs. In that
   case be aware it must not begin with dot (.) or slash (/) because
   the entire value will be ignored and replaced with the string
   `moodle`.
-* *apacheConf* this option sets the type of apache configuration you want:
+* ``apacheConf`` this option sets the type of apache configuration you want:
 
   * ``virtualhost`` : moodle is reachable by the url "https://yourdomain.com
   * ``alias`` (default path is moodle): moodle is reachable by the url "https://yourdomain.com/yourpath
