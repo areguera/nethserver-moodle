@@ -52,44 +52,47 @@ to reach Moodle web application either to use *Alias* or a *Virtual
 Host*.
 
 * *Alias* -- This is the default implemented solution, and takes place
-  when the value of *host* property is empty and the value of *path*
-  property is non-empty and it doesn't begin with dot or slash in
-  which case the value introduced will be replaced by `moodle`. To
-  implement this solution run the following commands:
+  when the value of *apacheConf* property is set to 'alias' (https://YOURSERVER/moodle) 
+  and it doesn't begin with dot or slash in
+  which case the value introduced will be replaced by `moodle` (which is the default content). 
+  To change the value of 'path' and enable this solution, run the following commands: ::
 
-    db configuration setprop moodle host "";
-    db configuration setprop moodle path moodle;
-    signal-event nethserver-moodle-update;
+    db configuration setprop moodle apacheConf alias path YourPath 
+    signal-event nethserver-moodle-update
 
 * *Virtual Host* -- This solution takes place when the value of *host*
-  property is non-empty and the value of  *path* property is empty. In
-  this case, the web server is reconfigured to use a customized value
+  property is non-empty (else it is set to the default hostname : systemName.domaineName)
+  and the value of  'apacheConf' is set to virtualhost
+  In this case, the web server is reconfigured to use a customized value
   of property *host* as reference to build a virtualhost-like
   configuration and serve Moodle that way. To implement this solution
-  run the following commands:
+  run the following commands: ::
 
-    db configuration setprop moodle host "vhost.your.domain";
-    db configuration setprop moodle path "";
+    db configuration setprop moodle apacheConf virtualhost host vhost.your.domain 
     signal-event nethserver-moodle-update;
 
   *CAUTION:* In order for this solution to work, the
   `vhost.your.domain` must have a valid entry in the system's hosts
-  database so to reach the server IP correctly.
+  database so to reach the server IP correctly. go to the dns/server alias panel of the server-manager
 
 Presently, the properties available in the `moodle` key have the
 following meaning:
 
-* *host* -- This option sets the host name par of the URL used to
+* ``host`` -- This option sets the host name par of the URL used to
   access Moodle. By default it uses the same host name of the HTTP
   request. You can change the value of this property to fit your
   needs. In that case be aware of the CAUTION admonition above.
 
-* *path* -- This option sets the path part of the URL used to access
+* ``path`` -- This option sets the path part of the URL used to access
   Moodle. By default the value of this property is set to `moodle`.
   You can change the value of this property to fit your needs. In that
   case be aware it must not begin with dot (.) or slash (/) because
   the entire value will be ignored and replaced with the string
   `moodle`.
+* ``apacheConf`` this option sets the type of apache configuration you want:
+
+  * ``virtualhost`` : moodle is reachable by the url "https://yourdomain.com
+  * ``alias`` (default path is moodle): moodle is reachable by the url "https://yourdomain.com/yourpath
 
 Authentication
 ==============
