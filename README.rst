@@ -24,7 +24,7 @@ When installed, the package does the following:
 * Create Moodle entry in NethServer applications
 
 * Create `moodle` key in NethServer configuration database. Under this
-  key you'll find both `host` and `path` properties
+  key you'll find properties like `host`, `path` and `apacheConf`
 
 Configuration
 =============
@@ -52,33 +52,35 @@ to reach Moodle web application either to use *Alias* or a *Virtual
 Host*.
 
 * *Alias* -- This is the default implemented solution, and takes place
-  when the value of *apacheConf* property is set to 'alias' (https://YOURSERVER/moodle) 
-  and it doesn't begin with dot or slash in
-  which case the value introduced will be replaced by `moodle` (which is the default content). 
-  To change the value of 'path' and enable this solution, run the following commands: ::
+  when the value of *apacheConf* property is set to 'alias'
+  (https://YOURSERVER/moodle) and it doesn't begin with dot or slash
+  in which case the value introduced will be replaced by `moodle`
+  (which is the default content).  To change the value of 'path' and
+  enable this solution, run the following commands: ::
 
     db configuration setprop moodle apacheConf alias path YourPath 
     signal-event nethserver-moodle-update
 
 * *Virtual Host* -- This solution takes place when the value of *host*
-  property is non-empty (else it is set to the default hostname : systemName.domaineName)
-  and the value of  'apacheConf' is set to virtualhost
-  In this case, the web server is reconfigured to use a customized value
-  of property *host* as reference to build a virtualhost-like
-  configuration and serve Moodle that way. To implement this solution
-  run the following commands: ::
+  property is non-empty (else it is set to the default hostname :
+  systemName.domaineName) and the value of  'apacheConf' is set to
+  virtualhost In this case, the web server is reconfigured to use a
+  customized value of property *host* as reference to build a
+  virtualhost-like configuration and serve Moodle that way. To
+  implement this solution run the following commands: ::
 
     db configuration setprop moodle apacheConf virtualhost host vhost.your.domain 
     signal-event nethserver-moodle-update;
 
   *CAUTION:* In order for this solution to work, the
   `vhost.your.domain` must have a valid entry in the system's hosts
-  database so to reach the server IP correctly. go to the dns/server alias panel of the server-manager
+  database so to reach the server IP correctly go to the dns/server
+  alias panel of the server-manager.
 
 Presently, the properties available in the `moodle` key have the
 following meaning:
 
-* ``host`` -- This option sets the host name par of the URL used to
+* ``host`` -- This option sets the host name part of the URL used to
   access Moodle. By default it uses the same host name of the HTTP
   request. You can change the value of this property to fit your
   needs. In that case be aware of the CAUTION admonition above.
@@ -89,9 +91,11 @@ following meaning:
   case be aware it must not begin with dot (.) or slash (/) because
   the entire value will be ignored and replaced with the string
   `moodle`.
-* ``apacheConf`` this option sets the type of apache configuration you want:
+
+* ``apacheConf`` -- This option sets the type of apache configuration you want:
 
   * ``virtualhost`` : moodle is reachable by the url "https://yourdomain.com
+
   * ``alias`` (default path is moodle): moodle is reachable by the url "https://yourdomain.com/yourpath
 
 Authentication
