@@ -1,6 +1,6 @@
 Name: nethserver-moodle
 Summary: Moodle integration in NethServer
-Version: 0.0.7
+Version: 0.0.9
 Release: 1%{?dist}
 License: GPL
 Source: %{name}-%{version}.tar.gz
@@ -41,6 +41,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Dec 7 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.9-1
+- Add support to both alias and virtualhost configuration
+- Update README.srt file to describe recent changes
+
 * Tue Nov 29 2016 Alain Reguera Delgado <alain.reguera@gmail.com> - 0.0.7-1
 - Update actions to expand moodle configuration files
 - Remove empty line from final config.php file
