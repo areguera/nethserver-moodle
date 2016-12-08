@@ -45,6 +45,8 @@ class Moodle extends \Nethgui\Module\AbstractModule implements \NethServer\Modul
 
         // Set path value based on database configuration
         $path = $this->getPlatform()->getDatabase('configuration')->getProp('moodle','path');
+
+        // Set apache configuration value based on database configuration
         $apacheConf = $this->getPlatform()->getDatabase('configuration')->getProp('moodle','apacheConf'); 
 
         // Set url value based on apache configuration
